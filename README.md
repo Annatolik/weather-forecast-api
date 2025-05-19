@@ -165,17 +165,51 @@ npm run start:prod
 
 ## Testing
 
-Run the test suite:
+### Unit Tests
+
+Run the unit test suite:
 
 ```bash
 npm test
 ```
 
-Run the test with coverage:
+Run the unit tests with coverage:
 
 ```bash
 npm run test:cov
 ```
+
+### End-to-End (E2E) Tests
+
+The application includes comprehensive E2E tests that verify the complete user flow:
+
+1. Getting weather data
+2. Creating a subscription
+3. Confirming a subscription
+4. Unsubscribing from updates
+
+To run the E2E tests:
+
+```bash
+npm run test:e2e
+```
+
+To run E2E tests with coverage:
+
+```bash
+npm run test:e2e:cov
+```
+
+To run E2E tests in watch mode (for development):
+
+```bash
+npm run test:e2e:watch
+```
+
+The E2E tests use:
+- A separate test database (configured in `.env.test`)
+- Mock implementations of the EmailService and WeatherService to avoid external API calls
+- Automated cleanup before and after tests
 
 ## Project Structure
 

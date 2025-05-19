@@ -1,10 +1,10 @@
 {
   "name": "weather-forecast-api",
-  "version": "0.0.1",
-  "description": "",
+  "version": "1.0.0",
+  "description": "Weather API application that allows users to subscribe to weather updates for their city",
   "author": "",
   "private": true,
-  "license": "UNLICENSED",
+  "license": "MIT",
   "scripts": {
     "build": "nest build",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
@@ -17,7 +17,13 @@
     "test:watch": "jest --watch",
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
-    "test:e2e": "jest --config ./test/jest-e2e.json"
+    "test:e2e": "jest --config ./test/jest-e2e.json",
+    "test:e2e:watch": "jest --config ./test/jest-e2e.json --watch",
+    "test:e2e:cov": "jest --config ./test/jest-e2e.json --coverage",
+    "migrate:create": "migrate-mongo create",
+    "migrate:up": "migrate-mongo up",
+    "migrate:down": "migrate-mongo down",
+    "migrate:status": "migrate-mongo status"
   },
   "dependencies": {
     "@nestjs/common": "^11.1.1",
