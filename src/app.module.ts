@@ -7,6 +7,7 @@ import { SubscriptionModule } from './subscription/subscription.module';
 import { EmailModule } from './email/email.module';
 import { SchedulerModule } from './scheduler/scheduler.module';
 import configuration from './config/configuration';
+import { MigrationModule } from './migration/migration.module';
 
 @Module({
   imports: [
@@ -22,6 +23,7 @@ import configuration from './config/configuration';
       inject: [ConfigService],
     }),
     ScheduleModule.forRoot(),
+    MigrationModule,
     WeatherModule,
     SubscriptionModule,
     EmailModule,

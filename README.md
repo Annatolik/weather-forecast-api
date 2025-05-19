@@ -203,6 +203,30 @@ The application uses MongoDB for data storage with the following collections:
 
 - **Subscriptions**: Stores user subscription information
 
+#### Database Migrations
+
+The application uses migrate-mongo for database migrations. Migrations are automatically run when the application starts.
+
+To create a new migration manually:
+
+```bash
+npx migrate-mongo create "name-of-migration"
+```
+
+This will create a new migration file in the migrations directory. You can then edit this file to define the `up` and `down` functions.
+
+To run migrations manually:
+
+```bash
+npx migrate-mongo up
+```
+
+To rollback the last migration:
+
+```bash
+npx migrate-mongo down
+```
+
 ### External APIs
 
 - **WeatherAPI.com**: Used to fetch current weather data for different cities

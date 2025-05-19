@@ -12,14 +12,19 @@ services:
       - MONGODB_URI=mongodb://mongo:27017/weather-api
       - EMAIL_HOST=${EMAIL_HOST}
       - EMAIL_PORT=${EMAIL_PORT}
+      - EMAIL_SECURE=${EMAIL_SECURE:-false}
       - EMAIL_USER=${EMAIL_USER}
       - EMAIL_PASS=${EMAIL_PASS}
       - EMAIL_FROM=${EMAIL_FROM}
+      - EMAIL_POOL=${EMAIL_POOL:-false}
+      - EMAIL_MAX_CONNECTIONS=${EMAIL_MAX_CONNECTIONS:-5}
+      - EMAIL_RATE_LIMIT=${EMAIL_RATE_LIMIT:-5}
       - WEATHER_API_KEY=${WEATHER_API_KEY}
-      - WEATHER_API_URL=http://api.weatherapi.com/v1
+      - WEATHER_API_URL=${WEATHER_API_URL:-http://api.weatherapi.com/v1}
       - BASE_URL=${BASE_URL:-http://localhost:3000}
     depends_on:
-      - mongo
+      mongo:
+        condition: service_healthy
     restart: unless-stopped
     volumes:
       - ./:/usr/src/app
@@ -31,6 +36,12 @@ services:
       - "27017:27017"
     volumes:
       - mongo_data:/data/db
+    healthcheck:
+      test: ["CMD", "mongosh", "--eval", "db.adminCommand('ping')"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 5s
 
 volumes:
   mongo_data:
